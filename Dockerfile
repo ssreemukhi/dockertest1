@@ -1,8 +1,7 @@
-FROM nginx:latest 
-MAINTAINER sreemukhi.s@gmail.com 
-RUN apt install -y curl
-COPY index.html /usr/share/nginx/html/
-COPY scorekeeper.js /usr/share/nginx/html/
-COPY style.css /usr/share/nginx/html/
-#HEALTHCHECK CMD curl --fail http://localhost || exit 1
-CMD ["nginx", "-g", "daemon off;"]
+FROM consol/tomcat-8.0
+MAINTAINER sreemukhi.s@gmail.com
+RUN curl -O https://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.40/bin/apache-tomcat-8.5.40.tar.gz
+RUN tar xvfz apache*.tar.gz
+RUN mv apache-tomcat-8.5.40/* /opt/tomcat/.
+RUN yum install java -y
+RUN java --version
